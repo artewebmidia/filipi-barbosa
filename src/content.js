@@ -90,6 +90,5 @@ export const reviews = [
   },
 ];
 
-// Preencher somente com uma quantidade confirmada pelo escritório.
-// null mantém a apresentação sem número até a confirmação.
-export const clientStats = { satisfiedClients: null };
+// Quantidade confirmada pelo usuário em 05/11/2026.
+export const clientStats = { satisfiedClients: 800 };

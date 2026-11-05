@@ -48,6 +48,6 @@ Use o checkout existente: cada tarefa já é isolada e não é necessário criar
 
 Os três retratos em `public/images/people` são imagens decorativas do Unsplash, não identificam os autores dos depoimentos nem representam clientes reais do escritório. São ocultos de leitores de tela e não recebem nomes ou citações. Origens: `images.unsplash.com/photo-1506794778202-cad84cf45f1d`, `images.unsplash.com/photo-1534528741775-53994a69daeb` e `images.unsplash.com/photo-1500648767791-00dcc994a43e`.
 
-`clientStats.satisfiedClients`, em `src/content.js`, controla a quantidade de clientes satisfeitos. O valor fica `null` até o escritório confirmar o número; nesse estado, aparece apenas “Clientes satisfeitos”. Não se deve reutilizar os números 500 ou 1.200 das referências como dado do escritório. As estrelas remetem às avaliações positivas transcritas do site oficial e não exibem uma média global ou total atual não verificado.
+`clientStats.satisfiedClients`, em `src/content.js`, controla a quantidade de clientes satisfeitos. O valor é `800`, confirmado pelo usuário em 05/11/2026, e a hero exibe “+800 Clientes satisfeitos”. Não se deve reutilizar os números 500 ou 1.200 das referências como dado do escritório. As estrelas remetem às avaliações positivas transcritas do site oficial e não exibem uma média global ou total atual não verificado.
 
 O rodapé tem padding de 72 px em cima e 40 px embaixo no desktop, e de 52 px / 32 px no celular.

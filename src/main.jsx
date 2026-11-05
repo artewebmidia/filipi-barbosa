@@ -255,7 +255,7 @@ function App() {
                   <div>
                     {clientStats.satisfiedClients !== null && (
                       <strong className="client-count">
-                        {clientStats.satisfiedClients.toLocaleString("pt-BR")}+
+                        +{clientStats.satisfiedClients.toLocaleString("pt-BR")}
                       </strong>
                     )}
                     <span>Clientes satisfeitos</span>

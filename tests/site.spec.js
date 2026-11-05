@@ -112,12 +112,10 @@ test("hero com fade, prova social e WhatsApp verde", async ({ page }) => {
   );
   await expect(page.locator("main")).not.toContainText(/imagem ilustrativa/i);
   await expect(page.locator(".review-card")).toHaveCount(3);
-  const footerPadding = await page
-    .locator(".site-footer")
-    .evaluate((el) => ({
-      top: parseFloat(getComputedStyle(el).paddingTop),
-      bottom: parseFloat(getComputedStyle(el).paddingBottom),
-    }));
+  const footerPadding = await page.locator(".site-footer").evaluate((el) => ({
+    top: parseFloat(getComputedStyle(el).paddingTop),
+    bottom: parseFloat(getComputedStyle(el).paddingBottom),
+  }));
   expect(footerPadding.top).toBeGreaterThanOrEqual(52);
-  expect(footerPadding.bottom).toBeGreaterThanOrEqual(32);
+  expect(footerPadding.bottom).toBe(0);
 });

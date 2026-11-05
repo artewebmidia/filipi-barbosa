@@ -50,4 +50,8 @@ Os três retratos em `public/images/people` são imagens decorativas do Unsplash
 
 `clientStats.satisfiedClients`, em `src/content.js`, controla a quantidade de clientes satisfeitos. O valor é `800`, confirmado pelo usuário em 05/11/2026, e a hero exibe “+800 Clientes satisfeitos”. Não se deve reutilizar os números 500 ou 1.200 das referências como dado do escritório. As estrelas remetem às avaliações positivas transcritas do site oficial e não exibem uma média global ou total atual não verificado.
 
-O rodapé tem padding de 72 px em cima e 40 px embaixo no desktop, e de 52 px / 32 px no celular.
+O rodapé mantém 72 px de padding superior no desktop e 52 px no celular, com padding inferior próprio de 0 px, como na primeira versão. O espaçamento da linha de copyright permanece. A fotografia da hero usa enquadramento vertical mais alto e fade também na lateral direita.
+
+## Marca Google
+
+A seção de avaliações usa o logo completo e os cards usam o G multicolorido, em PNGs oficiais locais com transparência, sem recriação tipográfica. Fontes: `https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png` e `https://www.google.com/images/branding/googleg/1x/googleg_standard_color_48dp.png`.

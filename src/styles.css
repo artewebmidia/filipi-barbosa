@@ -463,25 +463,11 @@ h1 span,
   color: #383d43;
 }
 .google-word {
-  font-family: Arial, sans-serif;
-  font-weight: 500;
-  letter-spacing: -2px;
-  font-size: 32px;
-  line-height: 1.2;
-}
-.google-word span:nth-child(1),
-.google-word span:nth-child(4) {
-  color: #4285f4;
-}
-.google-word span:nth-child(2),
-.google-word span:nth-child(6) {
-  color: #ea4335;
-}
-.google-word span:nth-child(3) {
-  color: #fbbc05;
-}
-.google-word span:nth-child(5) {
-  color: #34a853;
+  display: block;
+  width: 112px;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 .reviews {
   text-align: center;
@@ -631,7 +617,7 @@ h1 span,
 .site-footer {
   background: var(--navy);
   color: #e6eaf0;
-  padding: 72px 0 40px;
+  padding: 72px 0 0;
 }
 .footer-grid {
   display: grid;
@@ -1093,7 +1079,7 @@ h1 span,
     margin-top: 20px;
   }
   .google-word {
-    font-size: 31px;
+    width: 104px;
   }
   .reviews > .button {
     font-size: 13px;
@@ -1174,7 +1160,7 @@ h1 span,
     font-size: 11px;
   }
   .site-footer {
-    padding: 52px 0 32px;
+    padding: 52px 0 0;
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -1329,10 +1315,11 @@ h1 span,
   color: var(--gold);
 }
 .google-letter {
-  font-family: Arial, sans-serif;
-  font-weight: 700;
-  font-size: 23px;
-  color: #4285f4;
+  display: block;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .review-stars {
   font-size: 17px;
@@ -1459,7 +1446,7 @@ h1 span,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 25%;
   mask-image: none;
   border-radius: 0;
   opacity: 0.94;
@@ -1469,6 +1456,13 @@ h1 span,
   position: absolute;
   inset: 0;
   background:
+    linear-gradient(
+      270deg,
+      #06243b 0%,
+      rgba(6, 36, 59, 0.88) 8%,
+      rgba(6, 36, 59, 0.18) 23%,
+      transparent 40%
+    ),
     linear-gradient(
       90deg,
       #06243b 0%,
@@ -1779,12 +1773,18 @@ h1 span,
     height: 410px;
   }
   .hero-photo {
-    object-position: center 10%;
+    object-position: center 40%;
     height: 100%;
     object-fit: cover;
   }
   .hero-visual:after {
     background:
+      linear-gradient(
+        270deg,
+        #06243b 0%,
+        rgba(6, 36, 59, 0.3) 10%,
+        transparent 25%
+      ),
       linear-gradient(
         180deg,
         #06243b 0%,

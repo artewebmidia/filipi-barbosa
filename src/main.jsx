@@ -97,11 +97,14 @@ function WhatsApp({ children = "Fale com um advogado", ...props }) {
 }
 function GoogleWord() {
   return (
-    <span className="google-word" aria-label="Google">
-      {[..."Google"].map((c, i) => (
-        <span key={i}>{c}</span>
-      ))}
-    </span>
+    <img
+      className="google-word"
+      src="/images/brands/google-wordmark.png"
+      alt="Google"
+      width="112"
+      height="38"
+      loading="lazy"
+    />
   );
 }
 function AreaDialog({ area, close }) {
@@ -393,9 +396,15 @@ function App() {
                     <span className="quote-mark" aria-hidden="true">
                       “
                     </span>
-                    <span className="google-letter" aria-hidden="true">
-                      G
-                    </span>
+                    <img
+                      className="google-letter"
+                      src="/images/brands/google-g.png"
+                      alt=""
+                      aria-hidden="true"
+                      width="24"
+                      height="24"
+                      loading="lazy"
+                    />
                   </div>
                   <div
                     className="review-stars"

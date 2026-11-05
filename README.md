@@ -30,9 +30,15 @@ Os testes abrem o Chromium instalado em `/usr/bin/chromium` ou o navegador geren
 
 ## Conteúdo e referências
 
-`src/content.js` centraliza os contatos, links e textos das áreas. Os contatos e as áreas vieram do mockup: a consulta a `filipibarbosa.adv.br`, ao link de avaliações do Google e ao Instagram foi bloqueada pela política de rede (HTTP 403) durante a implementação. Os dados precisam ser conferidos com o escritório antes de publicar. Nenhum depoimento, nota ou número de avaliações foi inventado. A seção de avaliações fornece um link direto ao Google; depoimentos reais podem ser incluídos após verificação.
+`src/content.js` centraliza os contatos, links, textos das áreas e depoimentos. O site oficial e o Instagram foram consultados em 05/11/2026; os contatos e áreas do mockup foram conferidos com o conteúdo do site oficial.
 
-O logotipo é uma reprodução tipográfica em CSS do modelo fornecido; pode ser substituído pela arte original em alta resolução. As duas fotografias são geradas por IA para uso ilustrativo, identificadas no site, e não representam o advogado nem o escritório real. Os arquivos locais ficam em `public/images`. Não houve coleta de fotos reais nas redes externas. Fontes DM Sans e Libre Caslon Display distribuídas pelos pacotes Fontsource; licenças acompanham os respectivos pacotes.
+- A hero usa o retrato anexado pelo usuário, tratado com IA para melhorar a apresentação e remover a faixa de texto da foto. A identificação foi refeita em HTML, abaixo da fotografia. O aviso de atendimento também fica fora da foto.
+- A fotografia da pasta do escritório veio de `https://filipibarbosa.adv.br/wp-content/uploads/2022/08/64.webp`. As duas imagens locais estão em `public/images` e usam WebP.
+- Os três depoimentos são transcrições literais do widget Google/Trustindex exibido em `https://filipibarbosa.adv.br/`. Nomes, textos, cinco estrelas e datas de julho de 2022 foram preservados; a seção informa essa procedência e oferece o link do Google. O Google redirecionou a consulta para uma página sem os depoimentos acessíveis, portanto não foi possível confirmar a nota ou o total atual de avaliações. Não há nota global nem contagem inventada.
+- O Instagram público foi consultado em `https://www.instagram.com/filipi.barbosa.adv/`. Não foi necessário utilizar outras fotos de lá.
+- O logotipo permanece uma reprodução tipográfica do modelo fornecido. As fontes DM Sans e Cormorant Garamond são locais via Fontsource, com licenças nos pacotes correspondentes. Títulos usam peso real 600.
+
+Os fundos alternam entre tons quentes na hero e azul-acinzentado na seção de avaliações, mantendo cerca de 60 px entre seções. O botão flutuante usa o verde `#25D366` do WhatsApp.
 
 ## Ambiente na nuvem
 

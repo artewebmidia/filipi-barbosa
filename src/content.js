@@ -89,3 +89,7 @@ export const reviews = [
     text: "Otimo proficional",
   },
 ];
+
+// Preencher somente com uma quantidade confirmada pelo escritório.
+// null mantém a apresentação sem número até a confirmação.
+export const clientStats = { satisfiedClients: null };

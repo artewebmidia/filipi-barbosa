@@ -19,7 +19,14 @@ import {
   Check,
   Instagram,
 } from "lucide-react";
-import { areas, contact, whatsappLink, formMessage, reviews } from "./content";
+import {
+  areas,
+  contact,
+  whatsappLink,
+  formMessage,
+  reviews,
+  clientStats,
+} from "./content";
 import "@fontsource/dm-sans/400.css";
 import "@fontsource/dm-sans/500.css";
 import "@fontsource/dm-sans/600.css";
@@ -206,56 +213,79 @@ function App() {
       </header>
       <main id="conteudo">
         <section className="hero" id="inicio">
+          <div className="hero-visual">
+            <img
+              className="hero-photo"
+              src="/images/filipi-barbosa.webp"
+              alt="Filipi Marcelino Barbosa, advogado em Joinville"
+              width="1122"
+              height="1402"
+              fetchPriority="high"
+            />
+          </div>
           <div className="container hero-inner">
             <div className="hero-copy">
-              <p className="eyebrow">
-                ADVOCACIA EM JOINVILLE E EM TODO O BRASIL
-              </p>
+              <p className="eyebrow">SEUS DIREITOS. NOSSO COMPROMISSO.</p>
               <h1>
-                Clareza para decidir.
-                <br />
-                Segurança para
-                <br />
-                <span>seguir em frente.</span>
+                Advogado Especialista em <span>Direito Civil</span> em Joinville
               </h1>
               <p className="hero-description">
-                Orientação jurídica com transparência
-                <br className="desktop-break" /> e atenção ao seu caso.
+                Orientação jurídica com transparência e atenção ao seu caso.
+                Clareza para decidir e segurança para seguir em frente.
               </p>
               <div className="hero-actions">
-                <WhatsApp />
+                <WhatsApp gold />
                 <Button href="#atuacao" secondary>
                   Conheça nossa atuação
                 </Button>
               </div>
+              <div className="hero-proof">
+                <div className="client-proof">
+                  <div className="client-avatars" aria-hidden="true">
+                    {[1, 2, 3].map((person) => (
+                      <img
+                        key={person}
+                        src={`/images/people/person-${person}.jpg`}
+                        alt=""
+                        width="48"
+                        height="48"
+                      />
+                    ))}
+                  </div>
+                  <div>
+                    {clientStats.satisfiedClients !== null && (
+                      <strong className="client-count">
+                        {clientStats.satisfiedClients.toLocaleString("pt-BR")}+
+                      </strong>
+                    )}
+                    <span>Clientes satisfeitos</span>
+                    <a href="#avaliacoes">
+                      Conheça suas experiências <ArrowUpRight size={12} />
+                    </a>
+                  </div>
+                </div>
+                <a
+                  className="hero-review-link"
+                  href={contact.google}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="hero-stars" aria-hidden="true">
+                    ★★★★★
+                  </span>
+                  <span>
+                    Avaliações no Google <ArrowUpRight size={12} />
+                  </span>
+                </a>
+              </div>
               <p className="location">
-                <MapPin size={17} />
+                <MapPin size={16} />
                 Atendimento em Joinville e em todo o Brasil
               </p>
             </div>
-            <div className="hero-visual">
-              <figure className="portrait-card">
-                <img
-                  className="hero-photo"
-                  src="/images/filipi-barbosa.webp"
-                  alt="Filipi Marcelino Barbosa, advogado, em seu escritório"
-                  width="800"
-                  height="1000"
-                  fetchPriority="high"
-                />
-                <figcaption className="portrait-caption">
-                  <strong>Filipi Marcelino Barbosa</strong>
-                  <span>ADVOGADO · OAB/SC 60.331</span>
-                </figcaption>
-              </figure>
-              <div className="care-note">
-                <MessageCircle size={24} strokeWidth={1.5} />
-                <span>
-                  Atendimento personalizado.
-                  <br />
-                  <strong>Atenção ao que importa para você.</strong>
-                </span>
-              </div>
+            <div className="hero-identity">
+              <p>Filipi Marcelino Barbosa</p>
+              <span>ADVOGADO · OAB/SC 60.331</span>
             </div>
           </div>
         </section>
@@ -316,13 +346,6 @@ function App() {
               alt="Pasta de documentos de Filipi Barbosa Advogados"
               loading="lazy"
             />
-            <div className="about-seal">
-              <span className="small-monogram">FB</span>
-              <span>
-                Proximidade que faz
-                <br />a diferença.
-              </span>
-            </div>
           </div>
           <div className="about-copy">
             <p className="eyebrow">O ESCRITÓRIO</p>

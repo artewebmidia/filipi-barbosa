@@ -5,7 +5,7 @@ test("layout, imagens e conteúdo principal", async ({ page }, info) => {
   await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Clareza para decidir.",
+    "Advogado Especialista em Direito Civil em Joinville",
   );
   await expect(page.locator(".area-card")).toHaveCount(6);
   expect(
@@ -92,18 +92,32 @@ test("layout sem rolagem horizontal em diferentes larguras", async ({
   }
 });
 
-test('retrato sem sobreposição, títulos com peso e WhatsApp verde', async ({ page }) => {
-  await page.goto('/');
+test("hero com fade, prova social e WhatsApp verde", async ({ page }) => {
+  await page.goto("/");
   await page.evaluate(() => document.fonts.ready);
-  const portrait = page.locator('.hero-photo');
-  await expect(portrait).toHaveAttribute('alt', /Filipi Marcelino Barbosa/);
-  await expect(portrait).toHaveAttribute('src', '/images/filipi-barbosa.webp');
-  const imageBox = await portrait.boundingBox();
-  const noteBox = await page.locator('.care-note').boundingBox();
-  expect(noteBox.y).toBeGreaterThanOrEqual(imageBox.y + imageBox.height);
-  await expect(page.locator('h1')).toHaveCSS('font-weight', '600');
-  await expect(page.locator('.floating-whatsapp')).toHaveCSS('background-color', 'rgb(37, 211, 102)');
-  await expect(page.locator('main')).not.toContainText(/imagem ilustrativa/i);
-  await expect(page.locator('.review-card')).toHaveCount(3);
-  await expect(page.locator('.review-card').first()).toContainText('Responde rápido suas duvidas');
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Advogado Especialista em Direito Civil em Joinville",
+  );
+  const portrait = page.locator(".hero-photo");
+  await expect(portrait).toHaveAttribute("alt", /Filipi Marcelino Barbosa/);
+  await expect(portrait).toHaveAttribute("src", "/images/filipi-barbosa.webp");
+  const buttonsBox = await page.locator(".hero-actions").boundingBox();
+  const proofBox = await page.locator(".hero-proof").boundingBox();
+  expect(proofBox.y).toBeGreaterThanOrEqual(buttonsBox.y + buttonsBox.height);
+  await expect(page.locator(".client-avatars img")).toHaveCount(3);
+  await expect(page.locator("h1")).toHaveCSS("font-weight", "600");
+  await expect(page.locator(".floating-whatsapp")).toHaveCSS(
+    "background-color",
+    "rgb(37, 211, 102)",
+  );
+  await expect(page.locator("main")).not.toContainText(/imagem ilustrativa/i);
+  await expect(page.locator(".review-card")).toHaveCount(3);
+  const footerPadding = await page
+    .locator(".site-footer")
+    .evaluate((el) => ({
+      top: parseFloat(getComputedStyle(el).paddingTop),
+      bottom: parseFloat(getComputedStyle(el).paddingBottom),
+    }));
+  expect(footerPadding.top).toBeGreaterThanOrEqual(52);
+  expect(footerPadding.bottom).toBeGreaterThanOrEqual(32);
 });

@@ -41,20 +41,20 @@
 .civil-number { font-family: var(--serif); font-size: 31px; font-weight: 600; line-height: 1; color: var(--civil-gold); min-width: 32px; }
 .civil-service-list h3 { font-size: 25px; }
 .civil-service-list p { font-size: 14px; color: #454950; margin-top: 12px; }
-.civil-case-note { background: #f7f4ef; padding: 30px; margin-top: 20px; display: flex; gap: 24px; border-radius: 5px; }
+.civil-case-note { background: #f7f4ef; padding: 30px; margin-top: 20px; display: flex; gap: 24px; border-radius: var(--card-radius); }
 .civil-case-note > svg { flex-shrink: 0; color: var(--civil-gold); margin-top: 4px; }
 .civil-case-note h3 { font-size: 26px; }
 .civil-case-note p { font-size: 13px; color: #454950; margin-top: 10px; }
 .civil-sidebar { display: grid; gap: 32px; min-width: 0; }
-.civil-sidebar-areas, .civil-lawyer { border: 1px solid #dfd9cf; background: #fff; padding: 28px; }
+.civil-sidebar-areas, .civil-lawyer { border: 1px solid #dfd9cf; background: #fff; padding: 28px; border-radius: var(--card-radius); }
 .civil-sidebar-areas { border-top-color: #bb8e49; }
 .civil-sidebar h2 { font-size: 26px; letter-spacing: -0.25px; line-height: 1.15; }
 .civil-sidebar-areas ul { margin: 20px 0 0; padding: 0; list-style: none; }
 .civil-sidebar-areas li + li { border-top: 1px solid #e8e4df; }
-.civil-sidebar-areas a, .civil-sidebar-areas button { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; line-height: 1.4; padding: 15px 12px; border: 0; text-align: left; background: transparent; }
+.civil-sidebar-areas a, .civil-sidebar-areas button { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; line-height: 1.4; padding: 15px 12px; border: 0; border-radius: 5px; text-align: left; background: transparent; }
 .civil-sidebar-areas [aria-current="page"] { background: var(--navy); color: #fff; }
 .civil-sidebar-areas a:not([aria-current]):hover, .civil-sidebar-areas button:hover { background: #f6f2ec; }
-.civil-sidebar-contact { background: var(--navy); color: #fff; padding: 30px 28px; }
+.civil-sidebar-contact { background: var(--navy); color: #fff; padding: 30px 28px; border-radius: var(--card-radius); }
 .civil-sidebar-contact .eyebrow { color: #e0b77c; font-size: 10px; letter-spacing: 1.2px; }
 .civil-contact-details { margin-top: 24px; display: grid; gap: 18px; font-style: normal; }
 .civil-contact-details > a { display: flex; align-items: flex-start; gap: 14px; font-size: 13px; line-height: 1.65; }
@@ -67,7 +67,7 @@
 .civil-text-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; text-decoration: underline; text-underline-offset: 4px; margin-top: 20px; }
 .civil-text-link:hover { color: var(--civil-gold); }
 .civil-sidebar-contact .civil-text-link:hover { color: #e0b77c; }
-.civil-lawyer img { width: 100%; aspect-ratio: 1.2; height: auto; object-fit: cover; object-position: center 28%; margin-bottom: 22px; }
+.civil-lawyer img { width: 100%; aspect-ratio: 1.2; height: auto; object-fit: cover; object-position: center 28%; margin-bottom: 22px; border-radius: var(--card-radius); }
 .civil-lawyer h2 { font-size: 25px; }
 .civil-lawyer .civil-credential { font-size: 9px; font-weight: 600; color: var(--civil-gold); letter-spacing: 0.9px; margin-top: 10px; }
 .civil-lawyer > p:not(.civil-credential) { font-size: 13px; color: #454950; margin-top: 18px; }
@@ -79,15 +79,16 @@
 .civil-step-list h3 { font-size: 24px; }
 .civil-step-list p { font-size: 13px; color: #e2e6e9; margin-top: 12px; }
 .civil-faq-grid { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); gap: 56px; align-items: start; margin-top: 36px; }
-.civil-faq-item { border-top: 1px solid var(--civil-line); }
+.civil-faq-item { border-top: 1px solid var(--civil-line); border-radius: var(--card-radius); }
 .civil-faq-item:last-child { border-bottom: 1px solid var(--civil-line); }
-.civil-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 25px 16px; font-size: 14px; font-weight: 600; list-style: none; cursor: pointer; }
+.civil-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 25px 16px; font-size: 14px; font-weight: 600; list-style: none; cursor: pointer; border-radius: inherit; }
 .civil-faq-item summary::-webkit-details-marker { display: none; }
 .civil-faq-item summary > svg { color: var(--civil-gold); flex-shrink: 0; transition: transform 0.2s; }
 .civil-faq-item summary:hover, .civil-faq-item[open] summary { background: #faf8f5; }
 .civil-faq-item summary:focus-visible { outline: 2px solid #a57534; outline-offset: -2px; }
 .civil-faq-item[open] summary > svg { transform: rotate(45deg); }
-.civil-faq-answer { padding: 0 16px 24px; background: #faf8f5; }
+.civil-faq-item[open] summary { border-radius: var(--card-radius) var(--card-radius) 0 0; }
+.civil-faq-answer { padding: 0 16px 24px; background: #faf8f5; border-radius: 0 0 var(--card-radius) var(--card-radius); }
 .civil-faq-answer p { font-size: 14px; color: #454950; }
 .civil-checklist { border-left: 1px solid #c8a36d; padding: 4px 0 4px 32px; }
 .civil-checklist h3 { font-size: 28px; }

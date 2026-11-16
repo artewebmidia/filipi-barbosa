@@ -28,11 +28,11 @@ test("layout, imagens e conteúdo principal", async ({ page }, info) => {
 });
 test("detalhes da área e fechamento por teclado", async ({ page }) => {
   await page.goto("/");
-  await page.locator(".area-card").filter({ hasText: "Direito Civil" }).click();
+  await page.locator(".area-card").filter({ hasText: "Direito de Família" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await expect(page.getByRole("dialog").getByRole("link")).toHaveAttribute(
     "href",
-    /wa.me\/5547988455504.*Direito%20Civil/,
+    /wa.me\/5547988455504.*Direito%20de%20Fam%C3%ADlia/,
   );
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toHaveCount(0);

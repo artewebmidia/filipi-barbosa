@@ -1,9 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowUpRight,
-  Menu,
-  X,
   Scale,
   UsersRound,
   ShieldCheck,
@@ -34,6 +32,7 @@ import "@fontsource/dm-sans/700.css";
 import "@fontsource/cormorant-garamond/500.css";
 import "@fontsource/cormorant-garamond/600.css";
 import "./styles.css";
+import { Button, WhatsApp, Header, Footer, FloatingWhatsApp, AreaDialog, AreaLink } from "./shared";
 const icons = {
   scale: Scale,
   users: UsersRound,
@@ -42,59 +41,6 @@ const icons = {
   landmark: Landmark,
   file: FilePenLine,
 };
-const links = [
-  ["Início", "#inicio"],
-  ["O escritório", "#escritorio"],
-  ["Áreas de atuação", "#atuacao"],
-  ["Contato", "#contato"],
-];
-function Brand({ footer = false }) {
-  return (
-    <a
-      className={`brand ${footer ? "brand-light" : ""}`}
-      href="#inicio"
-      aria-label="Filipi Barbosa Advogados — início"
-    >
-      <span className="monogram" aria-hidden="true">
-        FB
-      </span>
-      <span className="brand-name">
-        Filipi Barbosa<span>ADVOGADOS</span>
-      </span>
-    </a>
-  );
-}
-function Button({
-  children,
-  href,
-  secondary = false,
-  gold = false,
-  className = "",
-  ...props
-}) {
-  return (
-    <a
-      href={href}
-      className={`button ${secondary ? "button-outline" : ""} ${gold ? "button-gold" : ""} ${className}`}
-      {...props}
-    >
-      {children}
-      <ArrowUpRight size={17} />
-    </a>
-  );
-}
-function WhatsApp({ children = "Fale com um advogado", ...props }) {
-  return (
-    <Button
-      href={whatsappLink()}
-      target="_blank"
-      rel="noopener noreferrer"
-      {...props}
-    >
-      {children}
-    </Button>
-  );
-}
 function GoogleWord() {
   return (
     <img
@@ -107,56 +53,8 @@ function GoogleWord() {
     />
   );
 }
-function AreaDialog({ area, close }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const d = ref.current;
-    d.showModal();
-    const old = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = old;
-    };
-  }, []);
-  const Icon = icons[area.icon];
-  return (
-    <dialog
-      ref={ref}
-      className="area-dialog"
-      aria-labelledby="area-title"
-      onCancel={close}
-      onClick={(e) => {
-        if (e.target === ref.current) close();
-      }}
-    >
-      <button
-        className="dialog-close"
-        onClick={close}
-        aria-label="Fechar detalhes"
-      >
-        <X />
-      </button>
-      <Icon size={44} strokeWidth={1.25} className="gold-icon" />
-      <p className="eyebrow">ÁREAS DE ATUAÇÃO</p>
-      <h2 id="area-title">{area.name}</h2>
-      <p>{area.detail}</p>
-      <p className="dialog-note">
-        A orientação jurídica depende da análise individual da situação e dos
-        documentos apresentados.
-      </p>
-      <Button
-        href={whatsappLink(`Olá! Gostaria de orientação sobre ${area.name}.`)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Conversar sobre meu caso
-      </Button>
-    </dialog>
-  );
-}
 function App() {
-  const [menu, setMenu] = useState(false),
-    [selected, setSelected] = useState(null),
+  const [selected, setSelected] = useState(null),
     [sent, setSent] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -164,18 +62,6 @@ function App() {
     email: "",
     message: "",
   });
-  const menuButton = useRef(null);
-  useEffect(() => {
-    if (!menu) return;
-    const key = (e) => {
-      if (e.key === "Escape") {
-        setMenu(false);
-        menuButton.current?.focus();
-      }
-    };
-    document.addEventListener("keydown", key);
-    return () => document.removeEventListener("keydown", key);
-  }, [menu]);
   function submit(e) {
     e.preventDefault();
     const url = whatsappLink(formMessage(form));
@@ -187,33 +73,7 @@ function App() {
       <a href="#conteudo" className="skip-link">
         Pular para o conteúdo
       </a>
-      <header className="site-header">
-        <div className="container header-inner">
-          <Brand />
-          <button
-            ref={menuButton}
-            className="menu-toggle"
-            aria-label={menu ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={menu}
-            aria-controls="main-nav"
-            onClick={() => setMenu(!menu)}
-          >
-            {menu ? <X /> : <Menu />}
-          </button>
-          <nav
-            id="main-nav"
-            className={menu ? "nav open" : "nav"}
-            aria-label="Navegação principal"
-          >
-            {links.map(([label, url]) => (
-              <a key={url} href={url} onClick={() => setMenu(false)}>
-                {label}
-              </a>
-            ))}
-            <WhatsApp className="nav-cta" />
-          </nav>
-        </div>
-      </header>
+      <Header />
       <main id="conteudo">
         <section className="hero" id="inicio">
           <div className="hero-visual">
@@ -325,11 +185,11 @@ function App() {
             {areas.map((a) => {
               const Icon = icons[a.icon];
               return (
-                <button
+                <AreaLink
                   className="area-card"
                   key={a.name}
-                  onClick={() => setSelected(a)}
-                  aria-haspopup="dialog"
+                  area={a}
+                  onAreaSelect={setSelected}
                 >
                   <Icon size={46} strokeWidth={1.25} />
                   <h3>{a.name}</h3>
@@ -337,7 +197,7 @@ function App() {
                   <span>
                     Saiba mais <ArrowUpRight size={16} />
                   </span>
-                </button>
+                </AreaLink>
               );
             })}
           </div>
@@ -592,83 +452,8 @@ function App() {
           </form>
         </section>
       </main>
-      <footer className="site-footer">
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <Brand footer />
-            <p>
-              Advocacia com transparência
-              <br />e proximidade.
-            </p>
-            <a
-              href={contact.instagram}
-              aria-label="Instagram de Filipi Barbosa"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram size={19} />
-            </a>
-          </div>
-          <div>
-            <h3>Navegação</h3>
-            {links.map(([label, url]) => (
-              <a key={url} href={url}>
-                {label}
-              </a>
-            ))}
-          </div>
-          <div>
-            <h3>Áreas de atuação</h3>
-            {areas.map((a) => (
-              <button key={a.name} onClick={() => setSelected(a)}>
-                {a.name}
-              </button>
-            ))}
-          </div>
-          <div className="footer-contact">
-            <h3>Contato</h3>
-            <a href={`tel:+${contact.whatsapp}`}>
-              <Phone />
-              {contact.phone}
-            </a>
-            <a href={`mailto:${contact.email}`}>
-              <Mail />
-              {contact.email}
-            </a>
-            <p>
-              <MapPin />
-              <span>
-                {contact.address}
-                <br />
-                {contact.city}
-              </span>
-            </p>
-          </div>
-        </div>
-        <div className="container copyright">
-          © {new Date().getFullYear()} Filipi Barbosa Advogados. Todos os
-          direitos reservados.
-        </div>
-      </footer>
-      <a
-        className="floating-whatsapp"
-        href={whatsappLink()}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Conversar com a equipe pelo WhatsApp"
-      >
-        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <path
-            d="M26.5 15.6a10.8 10.8 0 0 1-15.9 9.6L5 27l1.8-5.4A10.8 10.8 0 1 1 26.5 15.6Z"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-          <path
-            d="M11.8 10.5c-.4-.9-1.2-.7-1.6-.2-1.1 1.3-.8 3.1.5 5 1.6 2.5 3.6 4.1 6.3 5 .9.3 2.8.6 3.7-.8.4-.6.5-1.2 0-1.5l-2.4-1.2c-.4-.2-.7.2-1.3.9-.3.4-.5.3-1 .1-1.6-.7-2.8-1.9-3.6-3.4-.2-.3-.2-.4.1-.7.7-.7.9-.9.6-1.5l-1.3-1.7Z"
-            fill="currentColor"
-          />
-        </svg>
-      </a>
+      <Footer onAreaSelect={setSelected} />
+      <FloatingWhatsApp />
       {selected && (
         <AreaDialog area={selected} close={() => setSelected(null)} />
       )}

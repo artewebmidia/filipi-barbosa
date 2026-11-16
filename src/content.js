@@ -10,6 +10,7 @@ export const contact = {
 export const areas = [
   {
     name: "Direito Civil",
+    href: "/advogado-direito-civil-joinville/",
     icon: "scale",
     summary: "Defesa dos seus direitos nas relações do dia a dia.",
     detail:

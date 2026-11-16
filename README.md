@@ -23,7 +23,7 @@ Os testes abrem o Chromium instalado em `/usr/bin/chromium` ou o navegador geren
 ## Funcionalidades
 
 - Menu mobile, navegação por âncoras e suporte a teclado.
-- Detalhes das seis áreas em diálogos acessíveis, com contato contextual.
+- Página própria de Direito Civil em `/advogado-direito-civil-joinville/`, seguindo a prévia aprovada: abertura editorial, navegação interna, conteúdo da especialidade, lateral com contatos e perfil, FAQ em acordeão e espaçamentos ampliados. O card e o rodapé da home apontam para a página. As outras cinco áreas preservam os diálogos acessíveis com contato contextual.
 - Contatos de telefone, e-mail, mapa, Instagram e avaliações do Google.
 - Formulário validado que abre o WhatsApp com uma mensagem preenchida; o visitante revisa e confirma o envio no próprio WhatsApp. Nenhum e-mail é enviado pelo site e nenhum dado do formulário é persistido.
 - Botão flutuante do WhatsApp e respeito à preferência de redução de movimento.
@@ -55,3 +55,17 @@ O rodapé mantém 72 px de padding superior no desktop e 52 px no celular, com p
 ## Marca Google
 
 A seção de avaliações usa o logo completo e os cards usam o G multicolorido, em PNGs oficiais locais com transparência, sem recriação tipográfica. Fontes: `https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png` e `https://www.google.com/images/branding/googleg/1x/googleg_standard_color_48dp.png`.
+
+## Página de Direito Civil e SEO local
+
+O build do Vite tem duas entradas HTML. `scripts/prerender.mjs` renderiza a página de Direito Civil em HTML estático após o build e preserva os arquivos JS para hidratação. O conteúdo, os links e as respostas do FAQ estão disponíveis sem JavaScript; o acordeão usa `details`/`summary` nativos, fechado por padrão e com um item aberto por vez. Cabeçalho, rodapé, links de áreas e diálogos estão em `src/shared.jsx` e são reutilizados pela home e pela página interna.
+
+O HTML da especialidade inclui title, description, canonical, Open Graph e dados estruturados de serviço jurídico, serviço, pessoa, página, breadcrumb e FAQ. Não há avaliações ou resultados inventados no schema. O build também gera sitemap e robots.txt. A URL base é `https://filipi-barbosa.vercel.app`; ao mudar o domínio, defina `SITE_URL` no ambiente de build e publique novamente. O título e o conteúdo da home foram preservados.
+
+```sh
+npm run build
+npm run test:html
+TEST_PRODUCTION=1 npm test -- --workers=2
+```
+
+Os testes de HTML verificam a saída estática, os metadados, a correspondência do FAQ com o schema, a existência dos assets e os arquivos de descoberta. Os testes de navegador cobrem o link da home, acesso direto, navegação de retorno, FAQ por teclado, outras áreas e larguras de 320 a 1440 px. `TEST_PRODUCTION=1` testa o build estático; sem essa variável, o runner usa o servidor de desenvolvimento.
